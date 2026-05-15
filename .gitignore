@@ -1,0 +1,23 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor folders
+.vscode/
+.idea/
+
+# Node / build output (in case any tooling gets added later)
+node_modules/
+dist/
+build/
+
+# Local env / secrets
+.env
+.env.local
+
+# Temp files this project sometimes creates during scripted edits
+_*.ps1
+_*.svg.txt
+_bak/
