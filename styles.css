@@ -2527,6 +2527,28 @@ label {
   text-underline-offset: 3px;
 }
 
+/* ----- About Preview tweaks (image bg + eyebrow contrast) ----- */
+.about-preview .section-label {
+  color: var(--navy-dark);
+  opacity: 0.7;
+}
+.about-preview__image {
+  background: var(--pale-sage);
+  overflow: hidden;
+}
+
+/* ----- Solid navy button (Read the Full Story etc) ----- */
+.btn--solid {
+  background: var(--navy-dark);
+  color: var(--white);
+  border-color: var(--navy-dark);
+}
+.btn--solid:hover {
+  background: #16263a;
+  color: var(--white);
+  border-color: #16263a;
+}
+
 /* ----- LEGAL / FAQ placeholder pages ----- */
 .legal-placeholder {
   max-width: 720px;
