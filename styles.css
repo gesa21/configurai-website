@@ -2543,6 +2543,199 @@ label {
   overflow: hidden;
 }
 
+/* ============================================================
+   WELCOME PAGE (post-purchase handoff)
+   ============================================================ */
+
+/* Hero: centered version of .page-hero with the homepage dot grid */
+.welcome-hero {
+  position: relative;
+  overflow: hidden;
+}
+.welcome-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(213, 255, 77, 0.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+.welcome-hero__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.welcome-hero .page-hero__label,
+.welcome-hero .page-hero__headline,
+.welcome-hero .page-hero__sub {
+  text-align: center;
+}
+.welcome-hero__sub {
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  max-width: 640px;
+  margin: 0 auto;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* Three numbered boxes (Section 2) */
+.welcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+@media (max-width: 900px) {
+  .welcome-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .welcome-grid { grid-template-columns: 1fr; }
+}
+
+.welcome-box {
+  background: var(--soft-stone);
+  padding: 2.25rem 1.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-light);
+}
+.welcome-box__num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+.welcome-box__title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0 0 0.85rem;
+}
+.welcome-box__body {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Lime-tick checklist (Sections 3 and 4) */
+.welcome-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  max-width: 780px;
+}
+.welcome-checklist__item {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1.4rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.welcome-checklist__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--lime);
+}
+.welcome-checklist__item strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.welcome-checklist__item {
+  color: var(--text-muted);
+}
+
+.welcome-closing {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+/* A note from Orgesa (Section 5) */
+.welcome-note {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.welcome-note__eyebrow {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin: 0 0 1.5rem;
+}
+.welcome-note p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 1.4rem;
+  font-size: 1.05rem;
+}
+.welcome-note p a {
+  color: var(--lime);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.welcome-signoff {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  color: var(--lime);
+  margin-top: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* Quick links (Section 6) */
+.welcome-quicklinks__title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  text-align: center;
+}
+.welcome-quicklinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+@media (max-width: 768px) {
+  .welcome-quicklinks { grid-template-columns: 1fr; }
+}
+.welcome-quicklinks a {
+  display: block;
+  background: var(--white);
+  padding: 1.5rem 1.25rem;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background var(--transition), color var(--transition),
+              transform var(--transition), border-color var(--transition);
+}
+.welcome-quicklinks a:hover {
+  background: var(--navy-dark);
+  color: var(--white);
+  border-color: var(--navy-dark);
+  transform: translateY(-2px);
+}
+
 /* ----- Solid navy button (Read the Full Story etc) ----- */
 .btn--solid {
   background: var(--navy-dark);
