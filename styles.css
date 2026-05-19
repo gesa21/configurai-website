@@ -2624,6 +2624,20 @@ label {
   line-height: 1.7;
   margin: 0;
 }
+.welcome-box__body a {
+  color: var(--navy-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  word-break: break-word;
+}
+.welcome-box__body a:hover {
+  color: var(--navy-dark);
+  background: var(--lime);
+  padding: 0.05em 0.2em;
+  border-radius: 2px;
+}
 
 /* Lime-tick checklist (Sections 3 and 4) */
 .welcome-checklist {
