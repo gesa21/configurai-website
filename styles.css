@@ -443,6 +443,40 @@ label {
   margin-left: 0.5rem;
 }
 
+/* Enrol Now dropdown wrapper (desktop nav).
+   Mirrors the AI Cohort dropdown pattern, reusing .nav__dropdown-menu
+   styling so colour, spacing, hover behaviour and animation match.
+   The dropdown menu aligns to the right edge of the button so it stays
+   inside the viewport. Hidden on mobile (see 1024px media query). */
+.nav__cta-dropdown {
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.nav__cta-dropdown .nav__cta {
+  margin-left: 0;
+}
+
+.nav__cta-dropdown .nav__dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.nav__cta-dropdown:hover .nav__dropdown-menu,
+.nav__cta-dropdown .nav__dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Mobile Enrol stack: pairs the two cohort buttons inside the mobile menu. */
+.nav__mobile-enrol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 /* Hamburger */
 .nav__hamburger {
   display: none;
@@ -2143,7 +2177,8 @@ label {
     display: none;
   }
 
-  .nav__cta {
+  .nav__cta,
+  .nav__cta-dropdown {
     display: none;
   }
 
@@ -2453,7 +2488,7 @@ label {
 .testimonial-card__name { color: var(--text-primary); }
 .testimonial-card__role { color: var(--text-muted); }
 
-/* ----- CORPORATE CALLOUT (Lime block, deep navy text — keep) ----- */
+/* ----- CORPORATE CALLOUT (Lime block, deep navy text, keep) ----- */
 .corporate-callout { background: var(--navy-dark); color: var(--white); }
 .corporate-callout__label { color: var(--lime); opacity: 1; }
 .corporate-callout__headline { color: var(--white); }
@@ -2471,7 +2506,7 @@ label {
 .newsletter-section__headline { color: var(--text-primary); }
 .newsletter-section__sub { color: var(--text-muted); }
 
-/* Subtle wave layer: 4 paths only — pale sage curves + a thin navy tracer
+/* Subtle wave layer: 4 paths only, pale sage curves plus a thin navy tracer
    + one acid lime accent line. Soft, not dominant. */
 .newsletter-section::before {
   content: '';
