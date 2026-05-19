@@ -2155,8 +2155,14 @@ label {
     grid-template-columns: 1fr;
   }
 
+  /* On mobile the photo stacks BELOW the text (HTML order). Constrain its
+     width so it does not dominate the viewport. */
   .hero__image {
-    display: none;
+    max-width: 360px;
+    margin: 1rem auto 0;
+  }
+  .hero__image img {
+    max-height: 480px;
   }
 
   .stats__grid {
