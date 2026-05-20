@@ -221,31 +221,31 @@
         <h2 class="section-headline fade-up fade-up--delay-1">Enquire About Corporate Training</h2>
         <p class="section-sub fade-up fade-up--delay-2" style="margin-bottom:3rem;">Fill in the form below and you will receive a response within one business day. If you would prefer to email directly: <a href="mailto:support@configurai.com" style="color:var(--lime);">support@configurai.com</a></p>
 
-        <form class="contact-form fade-up" style="max-width:860px;" onsubmit="return false;">
+        <form id="corporate-enquiry-form" class="contact-form fade-up" style="max-width:860px;">
 
           <div>
             <label for="corp-company">Company Name</label>
-            <input class="form-input" type="text" id="corp-company" placeholder="Your organisation" style="width:100%;">
+            <input class="form-input" type="text" id="corp-company" name="organisation" placeholder="Your organisation" style="width:100%;">
           </div>
 
           <div>
             <label for="corp-name">Your Name</label>
-            <input class="form-input" type="text" id="corp-name" placeholder="Full name" style="width:100%;">
+            <input class="form-input" type="text" id="corp-name" name="fullname" placeholder="Full name" style="width:100%;">
           </div>
 
           <div>
             <label for="corp-role">Your Role</label>
-            <input class="form-input" type="text" id="corp-role" placeholder="e.g. Head of People, Finance Director" style="width:100%;">
+            <input class="form-input" type="text" id="corp-role" name="role" placeholder="e.g. Head of People, Finance Director" style="width:100%;">
           </div>
 
           <div>
             <label for="corp-email">Email Address</label>
-            <input class="form-input" type="email" id="corp-email" placeholder="your@company.com" style="width:100%;">
+            <input class="form-input" type="email" id="corp-email" name="email" placeholder="your@company.com" style="width:100%;">
           </div>
 
           <div>
             <label for="corp-size">Team Size</label>
-            <select class="form-select" id="corp-size">
+            <select class="form-select" id="corp-size" name="teamsize">
               <option value="" disabled selected>Select team size</option>
               <option value="5-15">5 to 15 people</option>
               <option value="16-50">16 to 50 people</option>
@@ -256,7 +256,7 @@
 
           <div>
             <label for="corp-time">Best Time to Talk</label>
-            <select class="form-select" id="corp-time">
+            <select class="form-select" id="corp-time" name="preference">
               <option value="" disabled selected>Select a preference</option>
               <option value="morning">Morning (9am to 12pm)</option>
               <option value="midday">Midday (12pm to 2pm)</option>
@@ -267,7 +267,7 @@
 
           <div class="contact-form__full">
             <label for="corp-message">What are you looking to solve?</label>
-            <textarea class="form-textarea" id="corp-message" placeholder="Tell us about your team, the tools you use, and what you are trying to achieve with AI training." style="min-height:160px;"></textarea>
+            <textarea class="form-textarea" id="corp-message" name="message" placeholder="Tell us about your team, the tools you use, and what you are trying to achieve with AI training." style="min-height:160px;"></textarea>
           </div>
 
           <div class="contact-form__full">
@@ -276,6 +276,14 @@
           </div>
 
         </form>
+
+        <div id="form-success" style="display:none; padding:1.5rem; background:#DCEAE8; color:#0D1B2A; border-left:4px solid #D5FF4D; margin-top:1rem; border-radius:4px;">
+          <strong>Enquiry received.</strong> You will receive a response from Orgesa within one business day.
+        </div>
+
+        <div id="form-error" style="display:none; padding:1.5rem; background:#fff; color:#0D1B2A; border-left:4px solid #ff4d4d; margin-top:1rem; border-radius:4px;">
+          <strong>Something went wrong.</strong> Please email support@configurai.com directly while we look into this.
+        </div>
       </div>
     </section>
 
@@ -343,6 +351,46 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <script>
+    (function() {
+      const form = document.getElementById('corporate-enquiry-form');
+      if (!form) return;
+
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxEKMJYbxmw5692LbvYcrmPx4VFZPEwbnEh3FzvRO2C7aVpvjqJdqzbVlMyrwcH8SJJ/exec';
+      const successBlock = document.getElementById('form-success');
+      const errorBlock = document.getElementById('form-error');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('input[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) {
+          submitBtn.textContent = 'Sending...';
+          submitBtn.disabled = true;
+        }
+
+        fetch(scriptURL, {
+          method: 'POST',
+          body: new FormData(form)
+        })
+        .then(function() {
+          form.style.display = 'none';
+          successBlock.style.display = 'block';
+          errorBlock.style.display = 'none';
+        })
+        .catch(function() {
+          errorBlock.style.display = 'block';
+          successBlock.style.display = 'none';
+          if (submitBtn) {
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+          }
+        });
+      });
+    })();
+    </script>
   </body>
 </html>
 
