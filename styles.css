@@ -3031,10 +3031,13 @@ label {
   border: 1px solid var(--border-light);
 }
 /* The card's <p> tags get forced white by .section--dark p when the
-   parent section is dark. Higher-specificity selectors below ensure the
-   tag stays lime and the description stays navy on the sage card. */
+   parent section is dark. Higher-specificity selectors below ensure
+   title, subtitle, and description all stay navy on the sage card.
+   Lime would not have enough contrast against pale sage for the
+   subtitle, so it's navy as well. The only lime accent in this
+   section is the "Today" eyebrow above the headline. */
 .business-card .business-card__name { color: var(--navy-dark); }
-.business-card .business-card__tag { color: var(--lime); }
+.business-card .business-card__tag { color: var(--navy-dark); }
 .business-card .business-card__desc { color: var(--navy-dark); }
 
 /* ----- INTRO TEXT (light pages) ----- */
@@ -3054,12 +3057,11 @@ label {
 .section--mid { background: var(--pale-sage); color: var(--text-primary); }
 .section--light { background: var(--soft-stone); color: var(--text-primary); }
 
-/* ----- ABOUT PAGE specific helpers (the page uses inline styles + utility classes) ----- */
-.about-pull-quote { color: var(--text-primary) !important; }
-.about-pull-quote span { color: var(--lime) !important; }
-.about-section-text p { color: var(--text-muted) !important; }
-.about-photo-placeholder { background: var(--pale-sage) !important; }
-.about-photo-placeholder span { color: var(--navy-dark) !important; opacity: 0.4; }
+/* About page helpers: legacy !important overrides removed.
+   The page now lives on section--dark, where the inline styles in
+   about.html provide the correct white/lime contrast naturally.
+   The lime span colour inside .about-pull-quote is still defined
+   inline in about.html, so no rule is needed here. */
 
 /* ----- FORMS (light) ----- */
 .form-input,
