@@ -2970,7 +2970,10 @@ label {
   border: 1px solid var(--border-light);
   color: var(--text-primary);
 }
-.deliverable-item p { color: var(--text-primary); }
+/* The cards live inside .section--dark, so we need higher specificity
+   than the .section--dark p rule lower down. */
+.deliverable-item p,
+.section--dark .deliverable-item p { color: var(--text-primary); }
 
 /* ----- PRICING BLOCK (Deep Navy callout) ----- */
 .pricing-block {
@@ -2980,7 +2983,11 @@ label {
 }
 .pricing-block__price { color: var(--lime); }
 .pricing-block__note { color: rgba(255, 255, 255, 0.7); }
-.pricing-block__includes li { color: rgba(255, 255, 255, 0.85); }
+/* Default the includes list to dark text for standalone use on light
+   sections (e.g. "What Is Included" on the pale sage section).
+   Keep the white treatment only when the list is inside a .pricing-block. */
+.pricing-block__includes li { color: var(--text-primary); }
+.pricing-block .pricing-block__includes li { color: rgba(255, 255, 255, 0.85); }
 
 /* ----- FAQ (light) ----- */
 .faq-item { border-bottom-color: var(--border-light); }
