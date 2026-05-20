@@ -42,13 +42,36 @@
 
       .about-section-text p {
         font-size: clamp(1rem, 1.4vw, 1.1rem);
-        color: rgba(255, 255, 255, 0.75);
         line-height: 1.85;
         margin-bottom: 1.25rem;
       }
 
+      .section--dark .about-section-text p {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .section--mid .about-section-text p,
+      .section--light .about-section-text p,
+      .section--white .about-section-text p {
+        color: var(--navy-dark);
+      }
+
       .about-section-text p:last-child {
         margin-bottom: 0;
+      }
+
+      /* Soft sage frame around photos that land on white sections,
+         so they don't float awkwardly against the empty backdrop. */
+      .about-photo-frame {
+        background: var(--pale-sage);
+        padding: 1.5rem;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .about-photo-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
       }
     </style>
     <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
@@ -128,9 +151,9 @@
     </section>
 
     <!-- ============================================================
-    THE BACKGROUND - text left, portrait right
+    THE BACKGROUND - text left, portrait right, on pale sage
     ============================================================ -->
-    <section class="section-block section--dark" aria-label="The background">
+    <section class="section-block section--mid" aria-label="The background">
       <div class="container">
         <div class="two-col two-col--center">
           <div class="fade-up">
@@ -147,9 +170,9 @@
     </section>
 
     <!-- ============================================================
-    WHY I BUILT THIS - text only
+    WHY I BUILT THIS - text only, on white
     ============================================================ -->
-    <section class="section-block section--dark" aria-label="Why I built this">
+    <section class="section-block section--white" aria-label="Why I built this">
       <div class="container">
         <div class="fade-up" style="max-width:760px;">
           <p class="section-label">Why I Built This</p>
@@ -184,9 +207,9 @@
     </section>
 
     <!-- ============================================================
-    THE CHANGE - text only
+    THE CHANGE - text only, on pale sage
     ============================================================ -->
-    <section class="section-block section--dark" aria-label="The change">
+    <section class="section-block section--mid" aria-label="The change">
       <div class="container">
         <div class="fade-up" style="max-width:760px;">
           <p class="section-label">The Change</p>
@@ -231,9 +254,9 @@
     </section>
 
     <!-- ============================================================
-    OUTSIDE THE WORK - personal side, speaker portrait, number pull quote
+    OUTSIDE THE WORK - personal side, speaker portrait, on white
     ============================================================ -->
-    <section class="section-block section--dark" aria-label="The personal side">
+    <section class="section-block section--white" aria-label="The personal side">
       <div class="container">
         <div class="two-col two-col--center">
 
@@ -247,12 +270,21 @@
           </div>
 
           <div class="fade-up fade-up--delay-1">
-            <img src="images/orgesa-speaker.png" alt="Orgesa Meli, competitive public speaker" loading="lazy" decoding="async" style="max-width:320px;width:100%;height:auto;display:block;margin:0 auto;">
+            <div class="about-photo-frame">
+              <img src="images/orgesa-speaker.png" alt="Orgesa Meli, competitive public speaker" loading="lazy" decoding="async">
+            </div>
           </div>
 
         </div>
+      </div>
+    </section>
 
-        <blockquote class="about-pull-quote fade-up" style="max-width:900px;margin-top:4rem;">
+    <!-- ============================================================
+    PULL QUOTE 2 - A NUMBER, on navy so the lime accent reads
+    ============================================================ -->
+    <section class="section-block section--dark" aria-label="Pull quote: a number">
+      <div class="container">
+        <blockquote class="about-pull-quote fade-up" style="max-width:900px;">
           You will not leave with a vague sense that AI is useful. You will leave with <span>a number.</span>
         </blockquote>
       </div>
@@ -317,11 +349,11 @@
             <h2 class="corporate-callout__headline">Ready to Join?</h2>
             <p class="corporate-callout__desc">Six weeks. Your actual job. A number at the end. Maximum 15 people per cohort. Not sure yet? Start with an AI Audit.</p>
           </div>
-          <div style="display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;">
-            <a href="https://courses.configurai.com/professionals-cohort" class="btn btn--black btn--lg">I am a Professional - £297</a>
-            <a href="https://courses.configurai.com/business-cohort" class="btn btn--black btn--lg">I run a Business - £297</a>
-            <a href="https://buy.stripe.com/bJe9AScuY0YX28ZeEp3gk05" class="btn btn--black" style="font-size:0.85rem;padding:0.65rem 1.25rem;">Start with an AI Audit (Professionals) - £197</a>
-            <a href="https://buy.stripe.com/7sYaEW66AfTR00ReEp3gk06" class="btn btn--black" style="font-size:0.85rem;padding:0.65rem 1.25rem;">Start with an AI Audit (Business Owners) - £197</a>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;align-items:stretch;min-width:320px;">
+            <a href="https://courses.configurai.com/professionals-cohort" class="btn btn--black btn--lg" style="text-align:center;">I am a Professional - £297</a>
+            <a href="https://courses.configurai.com/business-cohort" class="btn btn--black btn--lg" style="text-align:center;">I run a Business - £297</a>
+            <a href="https://buy.stripe.com/bJe9AScuY0YX28ZeEp3gk05" class="btn btn--lg" style="text-align:center;background:transparent;border:2px solid var(--navy-dark);color:var(--navy-dark);">Start with an AI Audit (Professionals) - £197</a>
+            <a href="https://buy.stripe.com/7sYaEW66AfTR00ReEp3gk06" class="btn btn--lg" style="text-align:center;background:transparent;border:2px solid var(--navy-dark);color:var(--navy-dark);">Start with an AI Audit (Business Owners) - £197</a>
           </div>
         </div>
       </div>

@@ -3048,6 +3048,15 @@ label {
 .section--dark { background: var(--navy-dark); color: var(--white); }
 .section--dark .section-headline { color: var(--white); }
 .section--dark p { color: rgba(255, 255, 255, 0.75); }
+/* Pure white section variant for the about page rhythm. */
+.section--white { background: var(--white); color: var(--text-primary); }
+/* The lime eyebrow does not have enough contrast on pale sage or
+   soft stone or white. Switch to navy on every light section. The
+   lime stays in place on dark sections via the base .section-label
+   rule above. */
+.section--mid .section-label,
+.section--light .section-label,
+.section--white .section-label { color: var(--text-primary); }
 /* The corporate-feature-card body must stay dark even inside .section--dark,
    because the card itself is painted white by the light-theme override.
    Without this, .section--dark p wins on later-in-file tiebreak and the body
