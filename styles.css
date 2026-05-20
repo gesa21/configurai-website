@@ -132,7 +132,7 @@ p {
 .section-label {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--lime);
@@ -896,7 +896,7 @@ label {
 .page-hero__label {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--lime);
@@ -1706,7 +1706,7 @@ label {
 .module-card__pre {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--lime);
@@ -2723,7 +2723,7 @@ label {
 .welcome-note__eyebrow {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--lime);
