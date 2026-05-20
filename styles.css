@@ -3042,6 +3042,12 @@ label {
 .section--dark { background: var(--navy-dark); color: var(--white); }
 .section--dark .section-headline { color: var(--white); }
 .section--dark p { color: rgba(255, 255, 255, 0.75); }
+/* The corporate-feature-card body must stay dark even inside .section--dark,
+   because the card itself is painted white by the light-theme override.
+   Without this, .section--dark p wins on later-in-file tiebreak and the body
+   text renders white on a white card. Specificity 0,2,0 matches .section--dark p
+   and comes after it in the cascade. */
+.corporate-feature-card .corporate-feature-card__body { color: var(--text-muted); }
 .section--mid { background: var(--pale-sage); color: var(--text-primary); }
 .section--light { background: var(--soft-stone); color: var(--text-primary); }
 
