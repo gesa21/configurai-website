@@ -2970,6 +2970,7 @@ label {
   border: 1px solid var(--border-light);
   color: var(--text-primary);
 }
+.deliverable-item p { color: var(--text-primary); }
 
 /* ----- PRICING BLOCK (Deep Navy callout) ----- */
 .pricing-block {
