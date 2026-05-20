@@ -2145,6 +2145,28 @@ label {
 .fade-up--delay-3 { transition-delay: 0.3s; }
 .fade-up--delay-4 { transition-delay: 0.4s; }
 
+/* Horizontal slide-in helpers, used for the about page portraits.
+   Same IntersectionObserver as .fade-up triggers the .visible class. */
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ============================================================
 26. MEDIA QUERIES
 ============================================================ */

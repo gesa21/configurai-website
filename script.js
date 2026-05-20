@@ -85,7 +85,7 @@ function initCookieBanner() {
 SCROLL FADE-UP (Intersection Observer)
 ============================================================ */
 function initFadeUp() {
-  const elements = document.querySelectorAll('.fade-up');
+  const elements = document.querySelectorAll('.fade-up, .slide-in-right, .slide-in-left');
   if (!elements.length) return;
 
   const observer = new IntersectionObserver((entries) => {
