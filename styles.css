@@ -2988,6 +2988,10 @@ label {
    Keep the white treatment only when the list is inside a .pricing-block. */
 .pricing-block__includes li { color: var(--text-primary); }
 .pricing-block .pricing-block__includes li { color: rgba(255, 255, 255, 0.85); }
+/* Standalone use on dark sections (e.g. the AI Audit booking section)
+   needs white text. Without this, dark text on dark background reads
+   as empty bullets. */
+.section--dark .pricing-block__includes li { color: rgba(255, 255, 255, 0.85); }
 
 /* ----- FAQ (light) ----- */
 .faq-item { border-bottom-color: var(--border-light); }
