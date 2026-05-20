@@ -132,7 +132,7 @@ p {
 .section-label {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--lime);
@@ -3030,9 +3030,12 @@ label {
   background: var(--pale-sage);
   border: 1px solid var(--border-light);
 }
-.business-card__name { color: var(--text-primary); }
-.business-card__tag { color: var(--text-muted); }
-.business-card__desc { color: var(--text-muted); }
+/* The card's <p> tags get forced white by .section--dark p when the
+   parent section is dark. Higher-specificity selectors below ensure the
+   tag stays lime and the description stays navy on the sage card. */
+.business-card .business-card__name { color: var(--navy-dark); }
+.business-card .business-card__tag { color: var(--lime); }
+.business-card .business-card__desc { color: var(--navy-dark); }
 
 /* ----- INTRO TEXT (light pages) ----- */
 .intro-text { color: var(--text-muted); }
