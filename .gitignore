@@ -21,3 +21,7 @@ build/
 _*.ps1
 _*.svg.txt
 _bak/
+
+# Certificate generator: PDFs stay local, never commit
+certificates/
+.cert-tmp/
