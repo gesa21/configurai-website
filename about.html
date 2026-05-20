@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-GB">
   <head>
     <meta charset="UTF-8">
@@ -64,15 +64,6 @@
     <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
   </head>
   <body>
-
-    <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookie-banner" role="alert">
-      <p>We use cookies to improve your experience on this site. Read our <a href="privacy-policy.html">Privacy Policy</a> for details.</p>
-      <div class="cookie-banner__actions">
-        <button class="btn btn--lime" id="cookie-accept">Accept</button>
-        <button class="btn btn--outline" id="cookie-decline">Decline</button>
-      </div>
-    </div>
 
     <!-- Navigation -->
     <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -337,10 +328,10 @@
             <p class="corporate-callout__desc">Six weeks. Your actual job. A number at the end. Maximum 15 people per cohort. Not sure yet? Start with an AI Audit.</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:0.75rem;align-items:stretch;min-width:440px;">
-            <a href="https://courses.configurai.com/professionals-cohort" class="btn btn--outline-lime btn--lg" style="text-align:center;">Join the AI Cohort for Professionals - £297</a>
-            <a href="https://courses.configurai.com/business-cohort" class="btn btn--outline-lime btn--lg" style="text-align:center;">Join the AI Cohort for Business Owners - £297</a>
-            <a href="https://buy.stripe.com/bJe9AScuY0YX28ZeEp3gk05" class="btn btn--outline-lime btn--lg" style="text-align:center;">Start with an AI Audit (Professionals) - £197</a>
-            <a href="https://buy.stripe.com/7sYaEW66AfTR00ReEp3gk06" class="btn btn--outline-lime btn--lg" style="text-align:center;">Start with an AI Audit (Business Owners) - £197</a>
+            <a href="https://courses.configurai.com/professionals-cohort" class="btn btn--outline-lime btn--lg" style="text-align:center;">Join the AI Cohort for Professionals - Â£297</a>
+            <a href="https://courses.configurai.com/business-cohort" class="btn btn--outline-lime btn--lg" style="text-align:center;">Join the AI Cohort for Business Owners - Â£297</a>
+            <a href="https://buy.stripe.com/bJe9AScuY0YX28ZeEp3gk05" class="btn btn--outline-lime btn--lg" style="text-align:center;">Start with an AI Audit (Professionals) - Â£197</a>
+            <a href="https://buy.stripe.com/7sYaEW66AfTR00ReEp3gk06" class="btn btn--outline-lime btn--lg" style="text-align:center;">Start with an AI Audit (Business Owners) - Â£197</a>
           </div>
         </div>
       </div>
@@ -403,11 +394,13 @@
           <div class="footer__bottom-links">
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms and Conditions</a>
+            <a href="#" onclick="event.preventDefault(); window.openCookieSettings();">Cookie settings</a>
           </div>
         </div>
       </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="cookie-banner.js" defer></script>
   </body>
 </html>

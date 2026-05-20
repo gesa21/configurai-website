@@ -562,6 +562,12 @@ label {
 /* ============================================================
 8. COOKIE BANNER
 ============================================================ */
+/* Legacy static cookie banner styles removed. The new banner is
+   self-contained in cookie-banner.js and injects its own scoped CSS.
+   The empty rules below are no-ops kept in place only to absorb any
+   leftover .cookie-banner or .cookie-banner__actions class references
+   in cached HTML during a deploy transition. Safe to delete entirely
+   once nothing else references these selectors. */
 .cookie-banner {
   position: fixed;
   bottom: 0;

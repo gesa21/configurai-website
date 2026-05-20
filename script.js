@@ -5,7 +5,6 @@ Shared JavaScript for all pages
 
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
-  initCookieBanner();
   initFadeUp();
   initCounters();
   initPanelSliders();
@@ -58,28 +57,12 @@ function initNav() {
 
 /* ============================================================
 COOKIE CONSENT
+Cookie consent is now handled by the separate cookie-banner.js
+widget which injects its own HTML, CSS, and event handlers and
+stores the visitor's choice under localStorage key
+'configurai_cookie_consent'. The legacy initCookieBanner function
+that lived here has been removed.
 ============================================================ */
-function initCookieBanner() {
-  const banner = document.getElementById('cookie-banner');
-  if (!banner) return;
-
-  const accepted = localStorage.getItem('configurai_cookies');
-  if (accepted) {
-    banner.classList.add('hidden');
-    return;
-  }
-
-  const acceptBtn = document.getElementById('cookie-accept');
-  const declineBtn = document.getElementById('cookie-decline');
-
-  function dismiss(choice) {
-    localStorage.setItem('configurai_cookies', choice);
-    banner.classList.add('hidden');
-  }
-
-  if (acceptBtn) acceptBtn.addEventListener('click', () => dismiss('accepted'));
-  if (declineBtn) declineBtn.addEventListener('click', () => dismiss('declined'));
-}
 
 /* ============================================================
 SCROLL FADE-UP (Intersection Observer)

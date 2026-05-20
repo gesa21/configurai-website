@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-GB">
   <head>
     <meta charset="UTF-8">
@@ -25,15 +25,6 @@
     <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
   </head>
   <body>
-
-    <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookie-banner" role="alert">
-      <p>We use cookies to improve your experience on this site. Read our <a href="privacy-policy.html">Privacy Policy</a> for details.</p>
-      <div class="cookie-banner__actions">
-        <button class="btn btn--lime" id="cookie-accept">Accept</button>
-        <button class="btn btn--outline" id="cookie-decline">Decline</button>
-      </div>
-    </div>
 
     <!-- Navigation -->
     <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -354,11 +345,13 @@
           <div class="footer__bottom-links">
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms and Conditions</a>
+            <a href="#" onclick="event.preventDefault(); window.openCookieSettings();">Cookie settings</a>
           </div>
         </div>
       </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="cookie-banner.js" defer></script>
   </body>
 </html>

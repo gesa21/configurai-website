@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-GB">
   <head>
     <meta charset="UTF-8">
@@ -26,15 +26,6 @@
     <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
   </head>
   <body>
-
-    <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookie-banner" role="alert">
-      <p>We use cookies to improve your experience on this site. Read our <a href="privacy-policy.html">Privacy Policy</a> for details.</p>
-      <div class="cookie-banner__actions">
-        <button class="btn btn--lime" id="cookie-accept">Accept</button>
-        <button class="btn btn--outline" id="cookie-decline">Decline</button>
-      </div>
-    </div>
 
     <!-- Navigation -->
     <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -197,7 +188,7 @@
       <div class="container">
         <div class="welcome-note">
           <p class="welcome-note__eyebrow fade-up">A Note from Orgesa</p>
-          <p class="fade-up fade-up--delay-1">Thank you for joining the Professional Cohort. I do not take it lightly that you have committed £297 and, more importantly, six weeks of your time alongside a demanding role.</p>
+          <p class="fade-up fade-up--delay-1">Thank you for joining the Professional Cohort. I do not take it lightly that you have committed Â£297 and, more importantly, six weeks of your time alongside a demanding role.</p>
           <p class="fade-up fade-up--delay-2">Here is my promise. By the end of these six weeks, you will have a clear, working AI system built around your specific job. The kind of system that turns three hour reports into thirty minute drafts, clears the inbox before lunch, and gives you back the headspace to think. You will know exactly how many hours it is saving you each week. And you will wonder why nobody taught you this sooner.</p>
           <p class="fade-up fade-up--delay-2">If you have any questions before we begin, email me at <a href="mailto:support@configurai.com">support@configurai.com</a>. I reply personally. See you on the 4th of June.</p>
           <p class="welcome-signoff fade-up fade-up--delay-3">Orgesa</p>
@@ -270,11 +261,13 @@
           <div class="footer__bottom-links">
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms and Conditions</a>
+            <a href="#" onclick="event.preventDefault(); window.openCookieSettings();">Cookie settings</a>
           </div>
         </div>
       </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="cookie-banner.js" defer></script>
   </body>
 </html>
