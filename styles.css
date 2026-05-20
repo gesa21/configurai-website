@@ -1411,7 +1411,7 @@ label {
 
 .testimonials__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -1422,6 +1422,33 @@ label {
   position: relative;
   overflow: hidden;
   transition: transform var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Attribution block sits at the bottom of the card with a short
+   lime divider above it. Higher specificity beats .section--dark p
+   so the navy colour wins on dark sections with white cards. */
+.testimonial-card .testimonial-card__attribution {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy-dark);
+  margin-top: auto;
+  padding-top: 1.25rem;
+  position: relative;
+}
+
+.testimonial-card .testimonial-card__attribution::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--lime);
 }
 
 .testimonial-card::after {
@@ -2269,7 +2296,7 @@ label {
   }
 
   .testimonials__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .corporate-callout__inner {
@@ -2509,6 +2536,13 @@ label {
 .testimonial-card__quote { color: var(--text-primary); }
 .testimonial-card__name { color: var(--text-primary); }
 .testimonial-card__role { color: var(--text-muted); }
+
+/* Mobile breakpoint for testimonials: single column under 768px.
+   Between 768px and 1024px the grid sits as 2 columns via the
+   .testimonials__grid rule in the 1024px media query above. */
+@media (max-width: 768px) {
+  .testimonials__grid { grid-template-columns: 1fr; }
+}
 
 /* ----- CORPORATE CALLOUT (Lime block, deep navy text, keep) ----- */
 .corporate-callout { background: var(--navy-dark); color: var(--white); }
