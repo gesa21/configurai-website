@@ -3373,13 +3373,8 @@ label { color: var(--text-muted); }
   max-width: 480px;
 }
 
-.community-hero__media img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 24px 60px rgba(13, 27, 42, 0.18);
-  display: block;
-}
+/* legacy .community-hero__media img rule removed; the .community-hero__img
+   class below is the single source of truth for the hero image styling */
 
 /* Shared section title for the community page on light sections */
 .community-section-title {
@@ -3725,7 +3720,7 @@ label { color: var(--text-muted); }
   .community-hero__media {
     order: -1;
   }
-  .community-hero__media img {
+  .community-hero__img {
     max-width: 480px;
     margin: 0 auto;
   }
@@ -3735,23 +3730,30 @@ label { color: var(--text-muted); }
 27. COMMUNITY PAGE - v2 additions
 ============================================================ */
 
-/* Hero image: cap at 480px on desktop, fade in on load */
+/* Hero image: cap at 680px on desktop, fade and rise in on load */
 .community-hero__img {
   width: 100%;
   height: auto;
-  max-width: 600px;
+  max-width: 680px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 12px;
   box-shadow: 0 24px 60px rgba(13, 27, 42, 0.18);
   display: block;
   opacity: 0;
-  animation: communityHeroFade 0.8s ease-out 0.2s forwards;
+  transform: translateY(20px);
+  animation: communityHeroFade 1.2s ease-out 0.3s forwards;
 }
 
 @keyframes communityHeroFade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* FAQ on white background (overrides the dark-section defaults from .faq-question) */
