@@ -1,16 +1,65 @@
 #!/usr/bin/env bash
 # ConfigurAI executive cohort certificate generator
-# Reads cohort1-graduates.csv and renders one PDF per row via headless Chrome.
+# Reads a CSV of graduates and renders one PDF per row via headless Chrome.
 # Output goes to certificates/ which is gitignored.
+#
+# Usage:
+#   ./generate-certificates.sh [--cohort professionals|business-owners] [--csv path]
+#
+# --cohort selects which template to use. Default: professionals.
+# --csv overrides the input CSV. Default: cohort1-graduates.csv.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEMPLATE="$SCRIPT_DIR/certificate-template.html"
+
+# Defaults
+COHORT="professionals"
 CSV="$SCRIPT_DIR/cohort1-graduates.csv"
+
+# Parse flags
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --cohort)
+      COHORT="${2:-}"
+      shift 2
+      ;;
+    --csv)
+      CSV="${2:-}"
+      shift 2
+      ;;
+    -h|--help)
+      sed -n '2,10p' "$0"
+      exit 0
+      ;;
+    *)
+      echo "ERROR: unknown argument '$1'" >&2
+      exit 1
+      ;;
+  esac
+done
+
+case "$COHORT" in
+  professionals|business-owners) ;;
+  *)
+    echo "ERROR: --cohort must be 'professionals' or 'business-owners' (got '$COHORT')" >&2
+    exit 1
+    ;;
+esac
+
+TEMPLATE="$SCRIPT_DIR/certificate-template-${COHORT}.html"
+if [ ! -f "$TEMPLATE" ]; then
+  echo "ERROR: template not found: $TEMPLATE" >&2
+  exit 1
+fi
+
 SIG_IMG="$SCRIPT_DIR/images/signature.png"
-OUT_DIR="$SCRIPT_DIR/certificates"
+OUT_DIR="$SCRIPT_DIR/certificates/${COHORT}"
 TMP_DIR="$SCRIPT_DIR/.cert-tmp"
+
+echo "Cohort: $COHORT"
+echo "Template: $TEMPLATE"
+echo "CSV: $CSV"
 
 # Locate Chrome (Windows / Mac / Linux fallbacks)
 CHROME=""
