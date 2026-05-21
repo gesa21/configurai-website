@@ -9,7 +9,7 @@ Single shared stylesheet for all pages
 :root {
   /* Brand palette */
   --navy-dark: #0D1B2A;        /* Deep Navy. Hero, feature sections, occasional callouts. */
-  --charcoal: #1A1A1A;          /* Charcoal. Navigation bar, optional footer. */
+  --charcoal: #1A1A1A;          /* Charcoal. Legacy; nav and footer now use Deep Navy. */
   --pale-sage: #DCEAE8;         /* Pale Sage. Alternating section background. */
   --soft-stone: #F2F3F0;        /* Soft Stone. Subtle near-white tertiary sections. */
   --lime: #D5FF4D;              /* Acid Lime. Accent only. */
@@ -317,9 +317,7 @@ label {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(13, 27, 42, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--navy-dark);
   border-bottom: 1px solid rgba(200, 241, 53, 0.12);
   transition: border-color var(--transition);
 }
@@ -2454,13 +2452,13 @@ label {
 .section-headline { color: var(--text-primary); }
 .section-sub { color: var(--text-muted); }
 
-/* ----- NAVIGATION (Charcoal) ----- */
+/* ----- NAVIGATION (Deep Navy) ----- */
 .nav {
-  background: rgba(26, 26, 26, 0.96);
+  background: var(--navy-dark);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
-.nav__mobile { background: var(--charcoal); }
-.nav__dropdown-menu { background: var(--charcoal); }
+.nav__mobile { background: var(--navy-dark); }
+.nav__dropdown-menu { background: var(--navy-dark); }
 
 /* ----- COOKIE BANNER (Deep Navy on light page, white text) ----- */
 .cookie-banner {
@@ -2603,9 +2601,9 @@ label {
   }
 }
 
-/* ----- FOOTER (Charcoal) ----- */
+/* ----- FOOTER (Deep Navy) ----- */
 .footer {
-  background: var(--charcoal);
+  background: var(--navy-dark);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--white);
 }
@@ -3237,7 +3235,7 @@ label { color: var(--text-muted); }
 .hero__image-placeholder { background: rgba(255, 255, 255, 0.04); }
 .hero__image-placeholder span { color: var(--lime); opacity: 0.5; }
 
-/* ----- Mobile menu links keep white-on-charcoal ----- */
+/* ----- Mobile menu links: white on navy ----- */
 .nav__mobile ul li a { color: var(--white); }
 .nav__mobile ul li a:hover { color: var(--lime); }
 .nav__mobile-close { color: var(--white); }
