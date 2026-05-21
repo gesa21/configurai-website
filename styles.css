@@ -908,10 +908,12 @@ label {
 }
 
 /* Larger eyebrow used on the two cohort pages so the "Six-Week Cohort - X"
-   label reads as a prominent category, not a footnote. */
+   label reads as a prominent category, not a footnote. Scales from ~22px
+   on small screens up to ~28px on desktop. Font, colour, uppercase, and
+   letter-spacing all inherited from .page-hero__label unchanged. */
 .page-hero__label--lg {
-  font-size: 1.375rem;
-  margin-bottom: 1.25rem;
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  margin-bottom: 1.5rem;
 }
 
 .page-hero__headline {
