@@ -3741,7 +3741,7 @@ label { color: var(--text-muted); }
 .community-hero__img {
   width: 100%;
   height: auto;
-  max-width: 480px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 12px;
@@ -3819,48 +3819,16 @@ label { color: var(--text-muted); }
   color: var(--text-primary);
 }
 
-/* Contact section (white) */
-.community-contact {
-  background: var(--white);
-  text-align: center;
-}
-
-.community-contact__eyebrow {
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(13, 27, 42, 0.5);
-  margin-bottom: 1rem;
-}
-
-.community-contact__headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  color: var(--navy-dark);
-  line-height: 1.02;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.01em;
-}
-
-.community-contact__body {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: var(--text-primary);
-}
-
-.community-contact__link {
+/* Links inside FAQ answers (used by the contact question) */
+.community-faq .faq-answer__inner a {
   color: var(--lime);
   font-weight: 500;
   text-decoration: none;
-  transition: color var(--transition), text-decoration-color var(--transition);
   text-underline-offset: 3px;
+  transition: color var(--transition), text-decoration-color var(--transition);
 }
 
-.community-contact__link:hover {
+.community-faq .faq-answer__inner a:hover {
   color: var(--navy-dark);
   text-decoration: underline;
   text-decoration-color: var(--navy-dark);
