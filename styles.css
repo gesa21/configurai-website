@@ -1594,6 +1594,20 @@ label {
   line-height: 1.6;
 }
 
+.footer__tagline a {
+  color: var(--lime);
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--transition), color var(--transition);
+}
+
+.footer__tagline a:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: var(--white);
+}
+
 .footer__col-title {
   font-family: var(--font-ui);
   font-weight: 700;
