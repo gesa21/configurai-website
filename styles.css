@@ -3821,15 +3821,14 @@ label { color: var(--text-muted); }
 
 /* Links inside FAQ answers (used by the contact question) */
 .community-faq .faq-answer__inner a {
-  color: var(--lime);
-  font-weight: 500;
-  text-decoration: none;
+  color: var(--navy-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--navy-dark);
   text-underline-offset: 3px;
-  transition: color var(--transition), text-decoration-color var(--transition);
+  transition: text-decoration-color var(--transition);
 }
 
 .community-faq .faq-answer__inner a:hover {
-  color: var(--navy-dark);
-  text-decoration: underline;
-  text-decoration-color: var(--navy-dark);
+  text-decoration-color: var(--lime);
 }
