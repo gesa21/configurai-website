@@ -907,6 +907,13 @@ label {
   margin-bottom: 1rem;
 }
 
+/* Larger eyebrow used on the two cohort pages so the "Six-Week Cohort - X"
+   label reads as a prominent category, not a footnote. */
+.page-hero__label--lg {
+  font-size: 1.375rem;
+  margin-bottom: 1.25rem;
+}
+
 .page-hero__headline {
   font-size: clamp(3rem, 7vw, 7rem);
   color: var(--white);
