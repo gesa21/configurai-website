@@ -3318,3 +3318,417 @@ label { color: var(--text-muted); }
     transform: none !important;
   }
 }
+
+/* ============================================================
+26. COMMUNITY PAGE
+============================================================ */
+
+/* Hero - two column on desktop */
+.community-hero {
+  background: var(--white);
+  padding: calc(70px + var(--section-pad)) 0 var(--section-pad);
+}
+
+.community-hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.community-hero__eyebrow {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.community-hero__headline {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  color: var(--navy-dark);
+  line-height: 0.98;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
+}
+
+.community-hero__sub {
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  color: var(--text-primary);
+  max-width: 560px;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.community-hero__ctas {
+  margin-bottom: 1rem;
+}
+
+.community-hero__note {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.community-hero__media img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(13, 27, 42, 0.18);
+  display: block;
+}
+
+/* Shared section title for the community page on light sections */
+.community-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  color: var(--navy-dark);
+  line-height: 1;
+  margin: 0 0 0.5rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.community-section-title--light {
+  color: var(--white);
+}
+
+/* Section 2 - pillars (2x2 grid of sage cards on white section) */
+.community-pillars {
+  background: var(--white);
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.pillar-card {
+  background: var(--pale-sage);
+  border: 1px solid rgba(13, 27, 42, 0.08);
+  border-left: 4px solid var(--lime);
+  padding: 2.25rem 2rem;
+  color: var(--navy-dark);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.pillar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(13, 27, 42, 0.08);
+}
+
+.pillar-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--navy-dark);
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-transform: none;
+}
+
+.pillar-card__body {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* Section 3 - inside the community (light blocks on stone section) */
+.community-inside {
+  background: var(--soft-stone);
+}
+
+.community-inside__lead {
+  text-align: center;
+  max-width: 640px;
+  margin: 1rem auto 0;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+.inside-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.inside-block {
+  background: var(--white);
+  border: 1px solid rgba(13, 27, 42, 0.1);
+  border-left: 3px solid var(--lime);
+  padding: 1.5rem 1.75rem;
+  transition: transform var(--transition);
+}
+
+.inside-block:hover {
+  transform: translateY(-2px);
+}
+
+.inside-block__title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy-dark);
+  margin-bottom: 0.5rem;
+}
+
+.inside-block__body {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.65;
+}
+
+.community-inside__levels {
+  text-align: center;
+  margin: 2.5rem auto 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  line-height: 1.75;
+}
+
+/* Section 4 - pricing (3 cards on navy section) */
+.community-pricing {
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+}
+
+.community-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.community-price-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(220, 234, 232, 0.25);
+  padding: 2.5rem 2rem;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition);
+}
+
+.community-price-card:hover {
+  transform: translateY(-3px);
+}
+
+.community-price-card--featured {
+  background: rgba(213, 255, 77, 0.04);
+  border: 2px solid var(--lime);
+}
+
+.community-price-card__label {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pale-sage);
+  margin-bottom: 1rem;
+}
+
+.community-price-card--featured .community-price-card__label {
+  color: var(--lime);
+}
+
+.community-price-card__price {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.community-price-card__per {
+  font-size: 0.9rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.community-price-card__body {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  flex-grow: 1;
+}
+
+.community-price-card .btn {
+  text-align: center;
+  width: 100%;
+}
+
+.community-pricing__note {
+  text-align: center;
+  margin: 2.25rem auto 0;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+/* Section 5 - honest about the fit (sage section, two columns) */
+.community-fit {
+  background: var(--pale-sage);
+}
+
+.fit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: 2.5rem;
+}
+
+.fit-col__title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy-dark);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--lime);
+  display: inline-block;
+}
+
+.fit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.fit-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+.fit-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 12px;
+  height: 2px;
+  background: var(--lime);
+}
+
+/* Section 6 - why I built this (white section) */
+.community-why {
+  background: var(--white);
+}
+
+.community-why__body {
+  max-width: 760px;
+  margin: 2rem auto 0;
+  text-align: left;
+}
+
+.community-why__body p {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: var(--text-primary);
+}
+
+.community-why__sig {
+  margin-top: 1.5rem !important;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy-dark) !important;
+  border-top: 2px solid var(--lime);
+  padding-top: 1rem;
+  display: inline-block;
+}
+
+/* Final CTA on navy section */
+.community-final {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.community-final__inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.community-final__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.community-final__sub {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Homepage hero - small community link beneath the CTAs */
+.hero__community-link {
+  margin-top: 1.25rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero__community-link a {
+  color: var(--lime);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition);
+}
+
+.hero__community-link a:hover {
+  opacity: 0.8;
+}
+
+/* Mobile breakpoints */
+@media (max-width: 900px) {
+  .community-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .community-hero__grid,
+  .pillar-grid,
+  .inside-grid,
+  .fit-grid {
+    grid-template-columns: 1fr;
+  }
+  .community-hero__media {
+    order: -1;
+  }
+  .community-hero__media img {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
