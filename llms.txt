@@ -8,8 +8,8 @@ ConfigurAI is a UK-based AI training and consultancy founded by Orgesa Meli, wit
 
 - [AI Cohort - Professionals](https://configurai.com/professionals.html): A six-week executive cohort for employed professionals, applying AI to their actual role. Includes weekly live calls, six self-paced modules, and a pre-cohort AI Audit. £297.
 - [AI Cohort - Business Owners](https://configurai.com/business-owners.html): A six-week cohort for business owners building AI systems into operations and growth. £297.
-- [AI Audit - Professionals](https://configurai.com/professionals-assessment.html): A one-to-one diagnostic for senior professionals, delivered as a 30 to 45 minute Zoom interview, a 7 to 9 page personalised report, and a 30 minute follow-up debrief. £197.
-- [AI Audit - Business Owners](https://configurai.com/business-owners-assessment.html): The same diagnostic format adapted for business owners, focused on revenue recovered, operational efficiency, and team leverage. £197.
+- [AI Audit - Professionals](https://configurai.com/professionals-audit.html): A one-to-one diagnostic for senior professionals, delivered as a 30 to 45 minute Zoom interview, a 7 to 9 page personalised report, and a 30 minute follow-up debrief. £197.
+- [AI Audit - Business Owners](https://configurai.com/business-owners-audit.html): The same diagnostic format adapted for business owners, focused on revenue recovered, operational efficiency, and team leverage. £197.
 - [AI Workflow Insiders Community](https://www.skool.com/ai-workflow-insiders-2123/about): Practical AI community with weekly workflow rebuilds, Monday prompts, and tool walkthroughs. $29 per month.
 - [Corporate Training](https://configurai.com/corporate.html): Custom AI training programmes for finance teams and general corporate teams, delivered across three tiers (Spotlight, Workshop, Sprint).
 
