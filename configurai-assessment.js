@@ -24,8 +24,8 @@
     "booking"
   ];
 
-  var DESKTOP_DELAY_MS = 20000; // 20 seconds
-  var MOBILE_DELAY_MS  = 10000; // 10 seconds
+  var DESKTOP_DELAY_MS = 3000; // 3 seconds
+  var MOBILE_DELAY_MS  = 3000; // 3 seconds
   var SUPPRESS_DAYS    = 30;    // do not show again for this many days
   var STORAGE_KEY      = "cfg_assessment_seen_at";
 
