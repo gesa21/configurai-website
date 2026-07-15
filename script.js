@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
   initHeroParallax();
   initHeroInlineCounters();
+  initTestimonialCarousel();
 });
 
 /* ============================================================
@@ -389,3 +390,101 @@ function initHeroInlineCounters() {
   obs.observe(supporting);
 }
 
+/* ============================================================
+TESTIMONIAL CAROUSEL
+One review at a time, arrows either side, auto-advancing at a
+pace set by how long each review takes to read.
+============================================================ */
+
+function initTestimonialCarousel() {
+  document.querySelectorAll('[data-testimonials]').forEach((root) => {
+    const viewport = root.querySelector('.tcarousel__viewport');
+    const track = root.querySelector('.tcarousel__track');
+    const slides = Array.from(track.querySelectorAll('.testimonial-card'));
+    const prev = root.querySelector('.tcarousel__arrow--prev');
+    const next = root.querySelector('.tcarousel__arrow--next');
+    const dotsWrap = root.querySelector('.tcarousel__dots');
+    if (slides.length < 2) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0;
+    let timer = null;
+    let paused = false;
+    let onScreen = false;
+
+    // Give each review as long as it takes to read: roughly 200 words a minute,
+    // plus a beat to settle. Clamped at both ends so a one-liner still lingers
+    // and the longest review does not park the carousel for over a minute.
+    const dwell = slides.map((s) => {
+      const words = (s.textContent || '').trim().split(/\s+/).filter(Boolean).length;
+      return Math.min(Math.max((words / 200) * 60000 + 2500, 7000), 32000);
+    });
+
+    const dots = slides.map((s, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tcarousel__dot';
+      b.setAttribute('aria-label', 'Review ' + (i + 1) + ' of ' + slides.length);
+      b.addEventListener('click', () => { go(i); restart(); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    // The reviews differ hugely in length, so animate the viewport to the height of
+    // whichever is showing rather than letting the section jump.
+    function setHeight() {
+      const h = slides[index].offsetHeight;
+      if (h) viewport.style.height = h + 'px';
+    }
+
+    function go(i) {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => {
+        s.classList.toggle('is-current', n === index);
+        s.setAttribute('aria-hidden', n === index ? 'false' : 'true');
+      });
+      dots.forEach((d, n) => {
+        d.classList.toggle('is-current', n === index);
+        if (n === index) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); }
+      });
+      setHeight();
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      if (reduce || paused || !onScreen) return;
+      timer = setTimeout(() => { go(index + 1); schedule(); }, dwell[index]);
+    }
+    function restart() { clearTimeout(timer); schedule(); }
+
+    prev.addEventListener('click', () => { go(index - 1); restart(); });
+    next.addEventListener('click', () => { go(index + 1); restart(); });
+
+    // Never advance out from under someone who is reading it.
+    ['mouseenter', 'focusin'].forEach((ev) => root.addEventListener(ev, () => { paused = true; clearTimeout(timer); }));
+    ['mouseleave', 'focusout'].forEach((ev) => root.addEventListener(ev, () => { paused = false; schedule(); }));
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); restart(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); restart(); }
+    });
+
+    // Do not cycle while the section is off screen.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        onScreen = entries[0].isIntersecting;
+        if (onScreen) { schedule(); } else { clearTimeout(timer); }
+      }, { threshold: 0.2 }).observe(root);
+    } else {
+      onScreen = true;
+    }
+
+    window.addEventListener('resize', setHeight);
+    // Webfonts land after first paint and change the measured height.
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setHeight); }
+
+    go(0);
+    setTimeout(setHeight, 80);
+    schedule();
+  });
+}

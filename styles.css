@@ -3840,3 +3840,278 @@ label { color: var(--text-muted); }
 .community-faq .faq-answer__inner a:hover {
   text-decoration-color: var(--lime);
 }
+
+
+/* ============================================================================
+   28. GRID TEXTURE ON DEEP NAVY
+   ============================================================================
+   The same faint grid the workshop deck uses, on the navy surfaces only.
+   Layered as a background-image so it paints above the navy fill and below all
+   content: no pseudo-elements, no stacking-order risk, nothing to interfere
+   with existing layouts. Deliberately not applied to small navy components
+   (buttons, testimonial cards, dropdowns), where it reads as noise, nor to
+   white or pale-sage sections, where a grid looks like graph paper.
+   This block must stay LAST in the file: .hero, .footer and .section--dark each
+   re-declare the `background` shorthand further up, which resets
+   background-image, so only a later rule survives the cascade.
+   ============================================================================ */
+
+.hero,
+.page-hero,
+.section--dark,
+.corporate-callout,
+.corporate-stat-bar,
+.pricing-block,
+.footer {
+  background-image:
+    linear-gradient(rgba(248, 246, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 246, 241, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+
+/* ============================================================================
+   29. FEATURED TESTIMONIAL
+   ============================================================================
+   A named testimonial carries far more weight than an anonymous one, and this
+   quote is roughly four times the length of the others. It spans the full grid
+   so it reads as the lead, and so a fourth card does not orphan on its own row
+   in the 3-column layout. The grid collapses to 1 column on mobile, where this
+   simply stacks first.
+   ============================================================================ */
+
+.testimonial-card--featured {
+  grid-column: 1 / -1;
+}
+
+.testimonial-card--featured .testimonial-card__quote {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+@media (min-width: 861px) {
+  .testimonial-card--featured {
+    padding: 3rem;
+  }
+}
+/* Emily's testimonial runs to several paragraphs. The original quote style assumed a
+   single block of text, so paragraphs inside a quote need their own spacing. */
+.testimonial-card__quote p {
+  margin: 0 0 1.05rem;
+}
+
+.testimonial-card__quote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   30. TESTIMONIAL CAROUSEL
+   ============================================================================
+   One review at a time, full width, with an arrow either side. Auto-advances at
+   a pace derived from each review's word count (see initTestimonialCarousel in
+   script.js), so a long quote is given longer on screen than a one-liner.
+   The viewport animates its own height because the reviews differ enormously in
+   length: Emily's runs to six paragraphs, the short ones to a single line.
+   ============================================================================ */
+
+.tcarousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tcarousel__viewport {
+  position: relative;
+  overflow: hidden;
+  transition: height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tcarousel__track {
+  position: relative;
+}
+
+/* Every slide is stacked in the same place; only the current one is visible. */
+.tcarousel__track > .testimonial-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s;
+  pointer-events: none;
+}
+
+.tcarousel__track > .testimonial-card.is-current {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Arrows */
+.tcarousel__arrow {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  padding: 0 0 0.18em;
+}
+
+.tcarousel__arrow:hover {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--navy-dark);
+  transform: scale(1.06);
+}
+
+.tcarousel__arrow:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+/* Dots */
+.tcarousel__dots {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.tcarousel__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.tcarousel__dot.is-current {
+  background: var(--lime);
+  transform: scale(1.3);
+}
+
+.tcarousel__dot:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  /* Arrows drop below the card on narrow screens, where there is no room beside it. */
+  .tcarousel {
+    grid-template-columns: 1fr;
+  }
+  .tcarousel__viewport {
+    grid-row: 1;
+  }
+  .tcarousel__arrow {
+    grid-row: 2;
+    width: 44px;
+    height: 44px;
+  }
+  .tcarousel__arrow--prev {
+    justify-self: end;
+    margin-right: 0.35rem;
+  }
+  .tcarousel__arrow--next {
+    grid-column: 1;
+    justify-self: start;
+    margin-left: 0.35rem;
+    transform: translateX(56px);
+  }
+  .tcarousel__arrow--next:hover {
+    transform: translateX(56px) scale(1.06);
+  }
+  .tcarousel__dots {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tcarousel__viewport,
+  .tcarousel__track > .testimonial-card {
+    transition: none;
+  }
+}
+
+/* ============================================================================
+   31. LIME GRID ON WHITE
+   ============================================================================
+   The counterpart to the navy grid, on the white sections only.
+   Lime sits at 91% luminance against white's 100%, so it needs far more opacity
+   than cream-on-navy does to register at all: 45% here versus 6% there. That is
+   deliberate, not a typo.
+   Full-width white sections only. Not the pale-sage or soft-stone bands, and not
+   white components (testimonial cards, module cards, forms), where a grid would
+   read as noise. .about-preview is white on the homepage but sage on the
+   programme pages, hence the :not().
+   Must stay after the rules above, which set the `background` shorthand and would
+   otherwise reset background-image.
+   ============================================================================ */
+
+.stats,
+.programmes,
+.about-preview:not(.section--mid),
+.section--white,
+.community-hero,
+.community-pillars,
+.community-why,
+.community-faq {
+  background-image:
+    linear-gradient(rgba(213, 255, 77, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(213, 255, 77, 0.45) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+
+/* ============================================================================
+   32. FIX: PARAGRAPHS INSIDE A TESTIMONIAL QUOTE
+   ============================================================================
+   `.section--dark p` (line ~3117) paints paragraphs white so they read on navy.
+   The testimonials section carries .section--dark, but the cards inside it are
+   white, so any quote written as <p> came out white-on-white and vanished.
+   Only Emily's review uses paragraphs, which is why it alone disappeared.
+   Quote text must follow its card, not the section behind it.
+   ============================================================================ */
+
+.testimonial-card .testimonial-card__quote p {
+  color: inherit;
+}
+
+
+/* ============================================================================
+   33. NAVY GRID ON PALE SAGE
+   ============================================================================
+   The same 5% navy grid, on the sage bands, so the light sections carry one
+   texture rather than white being gridded and sage sitting flat beside it.
+   ============================================================================ */
+
+.section--mid,
+.assessments,
+.community-fit,
+.about-preview.section--mid {
+  background-image:
+    linear-gradient(rgba(13, 27, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 27, 42, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
