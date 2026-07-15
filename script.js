@@ -392,75 +392,110 @@ function initHeroInlineCounters() {
 
 /* ============================================================
 TESTIMONIAL CAROUSEL
-One review at a time, arrows either side, auto-advancing at a
-pace set by how long each review takes to read.
+Three reviews in view, sliding one at a time, with arrows and
+auto-advance paced by how long the reviews on screen take to read.
 ============================================================ */
 
 function initTestimonialCarousel() {
   document.querySelectorAll('[data-testimonials]').forEach((root) => {
-    const viewport = root.querySelector('.tcarousel__viewport');
     const track = root.querySelector('.tcarousel__track');
     const slides = Array.from(track.querySelectorAll('.testimonial-card'));
     const prev = root.querySelector('.tcarousel__arrow--prev');
     const next = root.querySelector('.tcarousel__arrow--next');
     const dotsWrap = root.querySelector('.tcarousel__dots');
-    if (slides.length < 2) return;
+    if (!slides.length) return;
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let index = 0;
     let timer = null;
     let paused = false;
     let onScreen = false;
+    let dots = [];
 
-    // Give each review as long as it takes to read: roughly 200 words a minute,
-    // plus a beat to settle. Clamped at both ends so a one-liner still lingers
-    // and the longest review does not park the carousel for over a minute.
-    const dwell = slides.map((s) => {
-      const words = (s.textContent || '').trim().split(/\s+/).filter(Boolean).length;
-      return Math.min(Math.max((words / 200) * 60000 + 2500, 7000), 32000);
+    const words = slides.map((s) => (s.textContent || '').trim().split(/\s+/).filter(Boolean).length);
+
+    // Cards in a row stretch to the tallest, so a long review would leave the short
+    // ones nearly empty. Clamp every quote and offer Read more only where it clips.
+    slides.forEach((card) => {
+      const q = card.querySelector('.testimonial-card__quote');
+      if (!q) return;
+      if (q.scrollHeight <= q.clientHeight + 4) return;
+      q.classList.add('is-clamped');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'testimonial-card__more';
+      btn.textContent = 'Read more';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => {
+        const open = card.classList.toggle('is-expanded');
+        btn.textContent = open ? 'Read less' : 'Read more';
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        // an expanded card changes the row height, so hold the rotation
+        paused = open;
+        if (open) { clearTimeout(timer); } else { schedule(); }
+      });
+      q.insertAdjacentElement('afterend', btn);
     });
 
-    const dots = slides.map((s, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'tcarousel__dot';
-      b.setAttribute('aria-label', 'Review ' + (i + 1) + ' of ' + slides.length);
-      b.addEventListener('click', () => { go(i); restart(); });
-      dotsWrap.appendChild(b);
-      return b;
-    });
+    // How many fit at this width. Must match the flex-basis breakpoints in the CSS.
+    function perView() {
+      if (window.matchMedia('(max-width: 640px)').matches) return 1;
+      if (window.matchMedia('(max-width: 900px)').matches) return 2;
+      return 3;
+    }
+    function maxIndex() { return Math.max(0, slides.length - perView()); }
 
-    // The reviews differ hugely in length, so animate the viewport to the height of
-    // whichever is showing rather than letting the section jump.
-    function setHeight() {
-      const h = slides[index].offsetHeight;
-      if (h) viewport.style.height = h + 'px';
+    // Time each position by the words actually on screen, so a window holding a long
+    // review is given longer than one holding three one-liners.
+    function dwell() {
+      const n = perView();
+      let w = 0;
+      for (let i = 0; i < n; i++) w += words[(index + i) % slides.length] || 0;
+      return Math.min(Math.max((w / 200) * 60000 + 2500, 9000), 34000);
+    }
+
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      dots = [];
+      for (let i = 0; i <= maxIndex(); i++) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tcarousel__dot';
+        b.setAttribute('aria-label', 'Reviews ' + (i + 1) + ' to ' + Math.min(i + perView(), slides.length));
+        b.addEventListener('click', ((n) => () => { go(n); restart(); })(i));
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      }
     }
 
     function go(i) {
-      index = (i + slides.length) % slides.length;
-      slides.forEach((s, n) => {
-        s.classList.toggle('is-current', n === index);
-        s.setAttribute('aria-hidden', n === index ? 'false' : 'true');
-      });
+      const max = maxIndex();
+      index = i > max ? 0 : (i < 0 ? max : i);
+      const step = slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 0);
+      track.style.transform = 'translateX(' + (-index * step) + 'px)';
       dots.forEach((d, n) => {
         d.classList.toggle('is-current', n === index);
         if (n === index) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); }
       });
-      setHeight();
+      // only what is on screen should be reachable by tab or screen reader
+      const n = perView();
+      slides.forEach((s, x) => {
+        const visible = x >= index && x < index + n;
+        s.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      });
     }
 
     function schedule() {
       clearTimeout(timer);
-      if (reduce || paused || !onScreen) return;
-      timer = setTimeout(() => { go(index + 1); schedule(); }, dwell[index]);
+      if (reduce || paused || !onScreen || maxIndex() === 0) return;
+      timer = setTimeout(() => { go(index + 1); schedule(); }, dwell());
     }
     function restart() { clearTimeout(timer); schedule(); }
 
     prev.addEventListener('click', () => { go(index - 1); restart(); });
     next.addEventListener('click', () => { go(index + 1); restart(); });
 
-    // Never advance out from under someone who is reading it.
+    // Never slide out from under someone reading it.
     ['mouseenter', 'focusin'].forEach((ev) => root.addEventListener(ev, () => { paused = true; clearTimeout(timer); }));
     ['mouseleave', 'focusout'].forEach((ev) => root.addEventListener(ev, () => { paused = false; schedule(); }));
 
@@ -469,7 +504,6 @@ function initTestimonialCarousel() {
       if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); restart(); }
     });
 
-    // Do not cycle while the section is off screen.
     if ('IntersectionObserver' in window) {
       new IntersectionObserver((entries) => {
         onScreen = entries[0].isIntersecting;
@@ -479,12 +513,19 @@ function initTestimonialCarousel() {
       onScreen = true;
     }
 
-    window.addEventListener('resize', setHeight);
-    // Webfonts land after first paint and change the measured height.
-    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setHeight); }
+    // Cards per view changes with width, so rebuild the dots and re-clamp the index.
+    let lastPer = perView();
+    window.addEventListener('resize', () => {
+      if (perView() !== lastPer) { lastPer = perView(); buildDots(); }
+      if (index > maxIndex()) index = maxIndex();
+      go(index);
+    });
 
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(() => go(index)); }
+
+    buildDots();
     go(0);
-    setTimeout(setHeight, 80);
+    setTimeout(() => go(index), 80);
     schedule();
   });
 }

@@ -3907,11 +3907,10 @@ label { color: var(--text-muted); }
 /* ============================================================================
    30. TESTIMONIAL CAROUSEL
    ============================================================================
-   One review at a time, full width, with an arrow either side. Auto-advances at
-   a pace derived from each review's word count (see initTestimonialCarousel in
-   script.js), so a long quote is given longer on screen than a one-liner.
-   The viewport animates its own height because the reviews differ enormously in
-   length: Emily's runs to six paragraphs, the short ones to a single line.
+   Three reviews visible at a time, as the original grid showed, on a track that
+   slides one card at a time. Arrows either side, dots below, auto-advance paced
+   by the words in view. Two per view on tablet, one on mobile.
+   The cards stretch to a common height so the row stays level as it slides.
    ============================================================================ */
 
 .tcarousel {
@@ -3925,32 +3924,25 @@ label { color: var(--text-muted); }
 .tcarousel__viewport {
   position: relative;
   overflow: hidden;
-  transition: height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .tcarousel__track {
-  position: relative;
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
-/* Every slide is stacked in the same place; only the current one is visible. */
+/* three across, matching the 1.5rem gap of the grid this replaced */
 .tcarousel__track > .testimonial-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s;
-  pointer-events: none;
+  flex: 0 0 calc((100% - 3rem) / 3);
+  min-width: 0;
 }
 
-.tcarousel__track > .testimonial-card.is-current {
-  position: relative;
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  pointer-events: auto;
+/* the featured modifier spanned a grid; inside a flex track it must not */
+.tcarousel__track > .testimonial-card--featured {
+  grid-column: auto;
 }
 
 /* Arrows */
@@ -3967,7 +3959,7 @@ label { color: var(--text-muted); }
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition), opacity var(--transition);
   padding: 0 0 0.18em;
 }
 
@@ -4013,44 +4005,38 @@ label { color: var(--text-muted); }
   outline-offset: 3px;
 }
 
-@media (max-width: 700px) {
-  /* Arrows drop below the card on narrow screens, where there is no room beside it. */
+@media (max-width: 900px) {
+  .tcarousel__track > .testimonial-card {
+    flex-basis: calc((100% - 1.5rem) / 2);
+  }
+}
+
+@media (max-width: 640px) {
   .tcarousel {
     grid-template-columns: 1fr;
   }
-  .tcarousel__viewport {
-    grid-row: 1;
+  .tcarousel__viewport { grid-row: 1; }
+  .tcarousel__track > .testimonial-card {
+    flex-basis: 100%;
   }
   .tcarousel__arrow {
     grid-row: 2;
     width: 44px;
     height: 44px;
   }
-  .tcarousel__arrow--prev {
-    justify-self: end;
-    margin-right: 0.35rem;
-  }
+  .tcarousel__arrow--prev { justify-self: end; margin-right: 0.35rem; }
   .tcarousel__arrow--next {
     grid-column: 1;
     justify-self: start;
     margin-left: 0.35rem;
     transform: translateX(56px);
   }
-  .tcarousel__arrow--next:hover {
-    transform: translateX(56px) scale(1.06);
-  }
-  .tcarousel__dots {
-    grid-column: 1;
-    grid-row: 3;
-    margin-top: 1.25rem;
-  }
+  .tcarousel__arrow--next:hover { transform: translateX(56px) scale(1.06); }
+  .tcarousel__dots { grid-column: 1; grid-row: 3; margin-top: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tcarousel__viewport,
-  .tcarousel__track > .testimonial-card {
-    transition: none;
-  }
+  .tcarousel__track { transition: none; }
 }
 
 /* ============================================================================
@@ -4114,4 +4100,70 @@ label { color: var(--text-muted); }
     linear-gradient(90deg, rgba(13, 27, 42, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   background-position: center top;
+}
+
+/* ============================================================================
+   34. CLAMPED QUOTES IN THE 3-UP CAROUSEL
+   ============================================================================
+   Three across only works if the cards are a similar depth. These are not:
+   Emily's review is 1716px tall at 352px wide, the short ones are 209px, and in
+   a flex row every card stretches to the tallest. That left ~1500px of empty
+   white in the short cards.
+   So every quote is clamped to the same depth and the long ones get a Read more,
+   which keeps all three boxes level without losing a single word.
+   ============================================================================ */
+
+.testimonial-card__quote {
+  position: relative;
+  max-height: 16.5em;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* fade the clipped edge so it reads as "more below" rather than a hard cut */
+.testimonial-card__quote.is-clamped::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3.5em;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--white) 85%);
+  pointer-events: none;
+}
+
+.testimonial-card.is-expanded .testimonial-card__quote {
+  max-height: 200em;
+}
+
+.testimonial-card.is-expanded .testimonial-card__quote.is-clamped::after {
+  opacity: 0;
+}
+
+.testimonial-card__more {
+  align-self: flex-start;
+  margin-top: 0.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy-dark);
+  border-bottom: 2px solid var(--lime);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.testimonial-card__more:hover {
+  color: var(--lime-ink, #5F7A16);
+  border-color: var(--navy-dark);
+}
+
+.testimonial-card__more:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
 }
