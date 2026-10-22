@@ -1,32 +1,31 @@
 # ConfigurAI
 
-> Applied AI training, audits, and community for professionals and business owners in the UK. Built around how the work actually gets done.
+> ConfigurAI is a London AI training and implementation consultancy for finance teams, accountancy firms and small businesses, founded by Orgesa Meli after 17 years in corporate finance and banking.
 
-ConfigurAI is a UK-based AI training and consultancy founded by Orgesa Meli, with 17 years in corporate finance and three businesses run alongside ConfigurAI. The company helps senior professionals and business owners apply AI to real work through cohort programmes, personalised audits, and an ongoing community.
+ConfigurAI trains finance teams and accountancy firms to use AI in their own files and accounting systems, and runs AI audits for small businesses. Finance training is delivered on site in London and the South East.
 
 ## Products
 
-- [AI Cohort - Professionals](https://configurai.com/professionals.html): A six-week executive cohort for employed professionals, applying AI to their actual role. Includes weekly live calls, six self-paced modules, and a pre-cohort AI Audit. £395.
-- [AI Cohort - Business Owners](https://configurai.com/business-owners.html): A six-week cohort for business owners building AI systems into operations and growth. £395.
-- [AI Audit - Professionals](https://configurai.com/professionals-audit.html): A one-to-one diagnostic for senior professionals, delivered as a 30 to 45 minute Zoom interview, a 7 to 9 page personalised report, and a 30 minute follow-up debrief. £295.
-- [AI Audit - Business Owners](https://configurai.com/business-owners-audit.html): The same diagnostic format adapted for business owners, focused on revenue recovered, operational efficiency, and team leverage. £295.
+- [AI training for finance teams](https://configurai.com/ai-for-finance-teams): On-site AI training and implementation for finance teams and accountancy firms in London and the South East, as 2 hours of training, a half day or a full day. The half day is for up to 4 people and includes a pre-session call, a written guide within 3 working days, 30 days of quick questions by phone or email, and a 60-minute follow-up call around day 30. Prices on enquiry. Built on Xero, QuickBooks, Sage, Zoho Books, FreeAgent, Sage Intacct, Business Central and NetSuite.
+- [AI audit for small businesses](https://configurai.com/business-owners-audit.html): A 30 to 45 minute Zoom interview, a 7 to 9 page personalised report delivered within 48 hours, and a 30 minute follow-up call. £495.
 - [AI Workflow Insiders Community](https://www.skool.com/ai-workflow-insiders-2123/about): Practical AI community with weekly workflow rebuilds, Monday prompts, and tool walkthroughs. $29 per month.
 - [Corporate Training](https://configurai.com/corporate.html): Custom AI training programmes for finance teams and general corporate teams, delivered across three tiers (Spotlight, Workshop, Sprint).
 
-## About the Founder
+## About the founder
 
-Orgesa Meli is the founder of ConfigurAI. Seventeen years in corporate finance. Three businesses. Based in London. Built ConfigurAI after extensively testing every AI tool, workflow, and prompting technique to find what actually delivers results. Uses AI daily to run three businesses while picking her children up from school at half three.
+ConfigurAI is a London AI training and implementation consultancy for finance teams, accountancy firms and small businesses, founded by Orgesa Meli after 17 years in corporate finance and banking. Orgesa runs 3 businesses with AI doing the jobs she would otherwise hire for, and she built configurai.com herself with AI.
 
-## Key Pages
+## Key pages
 
+- [AI training for finance teams](https://configurai.com/ai-for-finance-teams): 2 hours of training, a half day or a full day for finance teams and accountancy firms, prices on enquiry.
 - [About](https://configurai.com/about.html): Full background on Orgesa Meli and ConfigurAI's approach.
 - [Community](https://configurai.com/community.html): The AI Workflow Insiders community page.
 - Contact: Email support@configurai.com or WhatsApp +44 7414 962803.
 
-## Important Notes
+## Important notes
 
-- ConfigurAI focuses on two AI tools: ChatGPT and Claude. These are the primary tools taught and used across all programmes.
-- All training emphasises practical application over theory.
-- The Executive Certification in AI Leadership, Automation and Transformation is awarded upon completion of any cohort.
-- Cohorts are capped at 15 participants for personalised attention.
+- ConfigurAI focuses on 2 AI tools: ChatGPT and Claude. The finance training is built on Claude.
+- The half day works on the team's real files.
+- In the finance training, the AI drafts and a person posts, pays and sends.
+- The AI features inside accounting systems are partly in beta and change monthly.
 - ConfigurAI is based in London, United Kingdom.

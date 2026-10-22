@@ -3,8 +3,8 @@
    Self-contained. Include once per page with:
      <script src="/configurai-assessment.js" defer></script>
 
-   Triggers: desktop = exit-intent OR 20s (whichever first).
-             mobile  = 10s on page.
+   Triggers: desktop = exit-intent OR 3s (whichever first).
+             mobile  = 3s on page.
    Shows once per visitor (suppressed for 30 days after it is seen).
    Does not run on the paths listed in EXCLUDE_PATHS.
    ===================================================================== */
@@ -12,12 +12,10 @@
   "use strict";
 
   // ---- CONFIG -------------------------------------------------------
-  // Replace with your deployed Cloudflare Worker URL before going live.
   var WORKER_URL = "https://configurai-beehiiv.orgesa-meli.workers.dev";
 
   // Pages the popup must NOT appear on (never interrupt a buyer).
   var EXCLUDE_PATHS = [
-    "professionals-audit",
     "business-owners-audit",
     "checkout",
     "thank-you",
@@ -104,12 +102,12 @@
     <div class="cfg-top">
       <div class="cfg-eyebrow">ConfigurAI</div>
       <div class="cfg-headline">Where could AI actually help you?</div>
-      <div class="cfg-sub">A one minute assessment. Four questions about your work, and a straight answer on where AI would genuinely save you time.</div>
+      <div class="cfg-sub">A 1-minute assessment. 4 questions about your work, and a straight answer on where AI would genuinely save you time.</div>
       <div class="cfg-progress"><div class="cfg-progress-bar" id="cfgBar"></div></div>
     </div>
     <div class="cfg-body">
       <div class="cfg-step active" id="step-intro">
-        <div class="cfg-question">Just answer four quick questions and I will show you where the real opportunity is.</div>
+        <div class="cfg-question">Just answer 4 quick questions and I will show you where the real opportunity is.</div>
         <button class="cfg-cta" id="cfgStartBtn">Start the assessment</button>
       </div>
       <div class="cfg-step" id="step-q1">
@@ -247,10 +245,10 @@
 
   function buildResult(){
     var drainCopy = {
-      reporting:{head:"Your biggest AI opportunity is in reporting and data work.",body:"Reporting is one of the highest-impact places to start, because the work is repetitive, rule-based, and eats hours that should go elsewhere. The professionals I work with usually reclaim several hours a week here once the right setup is in place.",card:"Begin with the report you rebuild most often. That single workflow is almost always where the first real time saving appears."},
+      reporting:{head:"Your biggest AI opportunity is in reporting and data work.",body:"Reporting is a good place to start, because the work is repetitive and rule-based.",card:"Begin with the report you rebuild most often. That single workflow is almost always where the first real time saving appears."},
       writing:{head:"Your biggest AI opportunity is in writing and documents.",body:"Emails, proposals and documents are where AI is genuinely strong right now, not to replace your judgement, but to remove the blank-page time and the second drafts. Done well, it gives you back the part of writing that is pure friction.",card:"Start with the type of document you write most often. Build one reliable approach for it, then reuse it."},
-      research:{head:"Your biggest AI opportunity is in research and finding information.",body:"Gathering and making sense of information is slow manual work, and it is exactly where AI can compress hours into minutes when it is set up properly rather than used as a search box.",card:"Pick one recurring question you always end up researching. That is the place to build your first proper workflow."},
-      meetings:{head:"Your biggest AI opportunity is around meetings and follow ups.",body:"Notes, actions and the endless chasing afterwards are quiet time drains. This is one of the easiest areas to fix, and the relief is immediate because it removes work you never wanted to be doing.",card:"Start with your meeting notes and follow-up actions. It is the quickest win and the one you feel straight away."}
+      research:{head:"Your biggest AI opportunity is in research and finding information.",body:"Gathering and making sense of information is slow manual work, and it is exactly where AI can take a lot of the manual work out of it when it is set up properly rather than used as a search box.",card:"Pick one recurring question you always end up researching. That is the place to build your first proper workflow."},
+      meetings:{head:"Your biggest AI opportunity is around meetings and follow ups.",body:"Notes, actions and the endless chasing afterwards are quiet time drains. This is one of the easier areas to fix, because it removes work you never wanted to be doing.",card:"Start with your meeting notes and follow-up actions. It is a quick win."}
     };
     var levelNudge = {
       never:" Starting from scratch is genuinely an advantage here, because you will learn it the right way rather than unlearning bad habits.",
@@ -267,20 +265,18 @@
 
   function buildRecs(){
     var owner = state.segment === "owner";
-    var audit = { name: owner ? "Business Owner AI Audit" : "Professional AI Audit",
-      desc: owner ? "A call about your business, then a written plan of where AI recovers time and revenue, and a follow-up to get it running."
-                  : "A call about your actual work, then a written plan of exactly where AI saves you time, and a follow-up to get it running.",
-      url: owner ? "https://configurai.com/business-owners-audit.html" : "https://configurai.com/professionals-audit.html" };
-    var cohort = { name: owner ? "The Cohort: AI Systems for Business Growth" : "The Cohort: Applied AI Leadership and Automation",
-      desc: owner ? "A six-week programme to build AI systems that quietly run more of your operations."
-                  : "A six-week applied programme to make AI a genuine, confident part of how you work.",
-      url: owner ? "https://configurai.com/business-owners.html" : "https://configurai.com/professionals.html" };
+    var audit = { name: "AI audit for small businesses",
+      desc: "A call about your business, then a written plan of where AI recovers time and revenue, and a follow-up to get it running.",
+      url: "https://configurai.com/business-owners-audit.html" };
+    var finance = { name: "AI training for finance teams",
+      desc: "A session on site where I set up Claude properly, we automate your real tasks on your own files, and you leave with 1 agent running by itself, with a person checking the output.",
+      url: "https://configurai.com/ai-for-finance-teams" };
     var membership = { name: "AI Workflow Insiders",
       desc: "My community. Each week I rebuild a real member workflow on video, plus working prompts, tool updates, and a monthly live call.",
       url: "https://www.skool.com/ai-workflow-insiders-2123/about" };
 
     var beginner = (state.level === "never" || state.level === "tried");
-    var ordered = beginner ? [cohort, audit, membership] : [audit, cohort, membership];
+    var ordered = owner ? (beginner ? [finance, audit, membership] : [audit, finance, membership]) : [finance, membership];
 
     var c = $("cfgRecs");
     c.innerHTML = "";
