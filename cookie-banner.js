@@ -136,7 +136,7 @@
     '  <div class="cookie-banner__inner">',
     '    <div class="cookie-banner__text">',
     '      <p class="cookie-banner__title">Cookies on configurai.com</p>',
-    '      <p class="cookie-banner__body">This site uses cookies to function properly and to understand how it is being used. You can accept all or decline non-essential. Read the <a href="privacy-policy.html">privacy policy</a> for full detail.</p>',
+    '      <p class="cookie-banner__body">This site uses cookies to function properly and to understand how it is being used. You can accept all or decline non-essential. Read the <a href="/privacy-policy">privacy policy</a> for full detail.</p>',
     '    </div>',
     '    <div class="cookie-banner__buttons">',
     '      <button id="cookie-accept" class="cookie-banner__btn cookie-banner__btn--primary" type="button">Accept all</button>',
