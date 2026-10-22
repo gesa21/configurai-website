@@ -7,7 +7,7 @@ ConfigurAI trains finance teams and accountancy firms to use AI in their own fil
 ## Products
 
 - [AI training for finance teams](https://configurai.com/ai-for-finance-teams): On-site AI training and implementation for finance teams and accountancy firms in London and the South East, as 2 hours of training, a half day or a full day. The half day is for up to 4 people and includes a pre-session call, a written guide within 3 working days, 30 days of quick questions by phone or email, and a 60-minute follow-up call around day 30. Prices on enquiry. Built on Xero, QuickBooks, Sage, Zoho Books, FreeAgent, Sage Intacct, Business Central and NetSuite.
-- [AI audit for small businesses](https://configurai.com/business-owners-audit): A 30 to 45 minute Zoom interview, a 7 to 9 page personalised report delivered within 48 hours, and a 30 minute follow-up call. £495.
+- [AI for small businesses](https://configurai.com/ai-for-small-businesses): Start with an AI audit: a 30 to 45 minute Zoom interview, a 7 to 9 page personalised report delivered within 48 hours, and a 30 minute follow-up call. £495.
 - [AI Workflow Insiders Community](https://www.skool.com/ai-workflow-insiders-2123/about): Practical AI community with weekly workflow rebuilds, Monday prompts, and tool walkthroughs. $29 per month.
 - [Corporate Training](https://configurai.com/corporate): Custom AI training programmes for finance teams and general corporate teams, delivered across three tiers (Spotlight, Workshop, Sprint).
 
