@@ -269,7 +269,7 @@
       desc: "A call about your business, then a written plan of where AI recovers time and revenue, and a follow-up to get it running.",
       url: "https://configurai.com/ai-for-small-businesses" };
     var finance = { name: "AI training for finance teams",
-      desc: "A session on site where I set up Claude properly, we automate your real tasks on your own files, and you leave with 1 agent running by itself, with a person checking the output.",
+      desc: "A session in your office or online where I set up Claude properly, we automate your real tasks on your own files, and you leave with 1 agent running by itself, with a person checking the output.",
       url: "https://configurai.com/ai-for-finance-teams" };
     var membership = { name: "AI Workflow Insiders",
       desc: "My community. Each week I rebuild a real member workflow on video, plus working prompts, tool updates, and a monthly live call.",
